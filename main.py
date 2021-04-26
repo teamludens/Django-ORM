@@ -24,9 +24,11 @@ from db.models import *
 ## START OF APPLICATION
 ############################################################################
 """ Replace the code below with your own """
+from push_notifications.gcm import send_message
 
-print("Now you have the power of Django's ORM at your fingertips!")
-print("The sample output below is printing usernames from the User model.")
+# https://github.com/jazzband/django-push-notifications/blob/13a2c6f7b34ab884f65e2791841549975795bebf/push_notifications/models.py#L104
+registration_id = "evOTBcDgJ0wKtrjrxuFiXr:APA91bFzEFMhIQTWpwmB_GlGZ9FKMZhYA77sCJohGvGw4NCBkJE3rn-SbpzGCSQ-IZ3Unct_DLHrsm-pdcnvXq-zTDW5ZEE1FAngdkAm2099hTK0rzDhu_inJTGi-nyLVYaSz9wCZ-uz"
+data = {"target": "와인모임이 개설되었습니다.", "description": "dfasdf", "message": "test"}
+badge = 1
 
-for u in User.objects.all():
-    print("ID: " + str(u.id) + "\tUsername: " + u.name)
+send_message(registration_id, data, "FCM", application_id=None, badge=badge)

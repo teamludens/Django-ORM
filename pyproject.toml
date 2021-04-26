@@ -1,0 +1,25 @@
+[tool.poetry]
+name = "django-orm"
+version = "0.1.0"
+description = ""
+authors = ["stevejeon <steve@mspw.io>"]
+
+[tool.poetry.dependencies]
+python = "^3.9"
+Django = "*"
+dj-database-url = "*"
+django-environ = "*"
+psycopg2 = "*"
+psycopg2-binary = "*"
+django-push-notifications = "*"
+
+[tool.poetry.dev-dependencies]
+black = {version = "*", allow-prereleases = true}
+ipdb = "*"
+ipython = "*"
+pre-commit = "*"
+toml = "*"
+
+[build-system]
+requires = ["poetry-core>=1.0.0"]
+build-backend = "poetry.core.masonry.api"

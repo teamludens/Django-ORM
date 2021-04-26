@@ -1,5 +1,7 @@
 import os
+import environ
 
+env = environ.Env()
 
 # Build paths inside the project like this: os.path.join(BASE_DIR, ...)
 BASE_DIR = os.path.dirname(os.path.abspath(__file__))
@@ -9,15 +11,16 @@ BASE_DIR = os.path.dirname(os.path.abspath(__file__))
 SECRET_KEY = "6few3nci_q_o@l1dlbk81%wcxe!*6r29yu629&d97!hiqat9fa"
 
 
-DATABASES = {
-    "default": {
-        "ENGINE": "django.db.backends.sqlite3",
-        "NAME": os.path.join(BASE_DIR, "db.sqlite3"),
-    }
-}
+# DATABASES
+# ------------------------------------------------------------------------------
+# https://docs.djangoproject.com/en/dev/ref/settings/#databases
+DATABASES = {"default": env.db("DATABASE_URL")}
+DATABASES["default"]["ATOMIC_REQUESTS"] = True
 
+INSTALLED_APPS = ("db", "push_notifications")
 
-INSTALLED_APPS = ("db",)
+PUSH_NOTIFICATIONS_SETTINGS = {}
+PUSH_NOTIFICATIONS_SETTINGS["FCM_API_KEY"] = env("FCM_API_KEY")  # noqa
 
 """
 To connect to an existing postgres database, first:
